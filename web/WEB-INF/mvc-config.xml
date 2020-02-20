@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 注释 -->
+<mvc>
+	<action-mappings>
+		<action path="login" class="com.java.blog.action.LoginAction" method="execute"></action>
+		<action path="Logout" class="com.java.blog.action.LogoutAction" method="execute"></action>
+		<action path="Register" class ="com.java.blog.action.RegisterAction" method="execute"></action>
+		<action path="AddArticle" class="com.java.blog.action.AddArticleAction" method="execute"></action>
+		<action path="DeleteArticle" class="com.java.blog.action.DeleteArticleAction" method="execute"></action>
+		<action path="ChangePassword" class="com.java.blog.action.ChangePasswordAction" method="execute"></action>
+		<action path="setPesionInfo" class="com.java.blog.action.SetPesionInfoAction" method="execute"></action>
+		<action path="AddComment" class="com.java.blog.action.AddCommentAction" method="execute"></action>
+		<action path="DetailArticle" class="com.java.blog.action.DetailArticleAction" method="execute"></action>
+		<action path="UpdateArticle" class="com.java.blog.action.UpdateArticleAction" method="execute"></action>
+		<action path="FindArticle" class="com.java.blog.action.FindArticleAction" method="execute"></action>
+		<action path="ListArticle" class="com.java.blog.action.ListArticleAction" method="execute"></action>
+		<action path="UserArticleList" class="com.java.blog.action.UserArticleListAction" method="execute"></action>
+	</action-mappings>
+</mvc>
