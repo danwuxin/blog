@@ -10,7 +10,7 @@ public class myTest {
 
 		user.setAccount("abc");
 		user.setPassword("123");
-		user.setName("张三丰");
+		user.setName("1wwq");
 		user.setImageUrl("1.gif");
 		UserService userService = new UserService();
 		boolean result = userService.register(user);

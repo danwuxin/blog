@@ -16,7 +16,7 @@ public class CommentDao {
 
 	public int deleteByArticleId(int articleId){
 		String sql = "delete from comments where ArticleId=?";
-		return new DBhelper().executeSql(sql, articleId) ;
+		return new DBhelper().execteSql(sql, articleId) ;
 
 	}
 	/**
@@ -65,7 +65,7 @@ public class CommentDao {
 	 * */
 	public int insert(Comment comment) {
 		String sql = "insert into comments(Content,PostTime,ArticleId,UserId) values(?,?,?,?)";
-		return new DBhelper().executeSql(sql, comment.getContent(), comment
+		return new DBhelper().execteSql(sql, comment.getContent(), comment
 				.getPostTime(), comment.getArticle().getArticleId(), comment.getUser()
 				.getUserid());
 	}

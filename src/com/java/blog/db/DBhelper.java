@@ -41,11 +41,11 @@ public class DBhelper {
 
 
 	/**
-	 * 功能：增删改
-	 * 参数：传入的是sql语句和object对象
-	 * 结果：影响的行数 返回结果是int
+	 * 执行数据的增删改
+	 *
+	 * @return:返回影响的行数
 	 * */
-	public int executeSql(String sql, Object... values) {
+	public int execteSql(String sql, Object... values) {
 		int result = 0;
 		try {
 			connection = getconnection();
@@ -54,12 +54,14 @@ public class DBhelper {
 				for (int i = 1; i <= values.length; i++) {
 					preparedStatement.setObject(i, values[i - 1]);
 				}
-
 			}
 			result = preparedStatement.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
 		return result;
+
 	}
 
 	/**

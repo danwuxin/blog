@@ -20,9 +20,9 @@ public class UserDao {
 	 * */
 	public int add(User user) {
 		int result = 0;
-		String sql = "insert into users(account,password,name,imageurl,age,gender,integrals)values(?,?,?,?,20,'男',100)";
+		String sql = "insert into users(account,password,name,imageurl,age,gender,integrals)values(?,?,?,?,20,'M',100)";
 		DBhelper helper = new DBhelper();
-		result = helper.executeSql(sql, user.getAccount(), user.getPassword(),
+		result = helper.execteSql(sql, user.getAccount(), user.getPassword(),
 				user.getName(), user.getImageUrl());
 		return result;
 
@@ -111,7 +111,7 @@ public class UserDao {
 		int result = 0;
 		String sql = "update users Set account=?,password=?,name=?,imageurl=?,age=?,gender=?,integrals=? where userid=?";
 		DBhelper helper = new DBhelper();
-		result = helper.executeSql(sql, user.getAccount(), user.getPassword(),
+		result = helper.execteSql(sql, user.getAccount(), user.getPassword(),
 				user.getName(), user.getImageUrl(), user.getAge(),
 				user.getGender(), user.getIntegrals(), user.getUserid());
 		return result;

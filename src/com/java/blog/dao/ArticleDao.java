@@ -20,7 +20,7 @@ public class ArticleDao {
 	 * */
 	public int insert(Article article) {
 		String sql = "insert into articles ( postTime,title,contents,clicks,userid) values(?,?,?,?,?)";
-		return new DBhelper().executeSql(sql, article.getPostTime(),
+		return new DBhelper().execteSql(sql, article.getPostTime(),
 				article.getTitle(), article.getContents(), article.getClicks(),
 				article.getUser().getUserid());
 	}
@@ -55,7 +55,7 @@ public class ArticleDao {
 	 * */
 	public int deleteById(int articleId) {
 		String sql = "delete from articles where articleId=?";
-		return new DBhelper().executeSql(sql, articleId);
+		return new DBhelper().execteSql(sql, articleId);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ArticleDao {
 	 * */
 	public int update(Article article) {
 		String sql = "update articles set PostTime=?,title=?,contents=?,clicks=?,userid=? where articleId=?";
-		return new DBhelper().executeSql(sql, article.getPostTime(),
+		return new DBhelper().execteSql(sql, article.getPostTime(),
 				article.getTitle(), article.getContents(), article.getClicks(),
 				article.getUser().getUserid(), article.getArticleId());
 	}
