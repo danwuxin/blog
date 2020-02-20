@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-18上午10:08:22
- *
- *作者：张国宝
- *功能：TODO
- */
 package com.java.blog.dao;
 
 import com.java.blog.db.DBhelper;

@@ -1,9 +1,3 @@
-/**
- *Ê±¼ä£º2014-4-18ÉÏÎç9:41:20
- *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
- */
 package com.java.blog.db;
 
 import java.sql.Connection;
@@ -21,8 +15,8 @@ public class DBhelper {
 	private ResultSet rs = null;
 
 	/**
-	 * ¼ÓÔØÊı¾İ¿âÇı¶¯
-	 * */ 
+	 * åŠ è½½æ•°æ®åº“é©±åŠ¨
+	 * */
 	private void loadDriver() {
 
 		try {
@@ -33,7 +27,7 @@ public class DBhelper {
 	}
 
 	/**
-	 * Á´½ÓÊı¾İ¿â
+	 * é“¾æ¥æ•°æ®åº“
 	 * */
 	public Connection getconnection() {
 		loadDriver();
@@ -45,11 +39,11 @@ public class DBhelper {
 		return connection;
 	}
 
-	
+
 	/**
-	 * ¹¦ÄÜ£ºÔöÉ¾¸Ä
-	 * ²ÎÊı£º´«ÈëµÄÊÇsqlÓï¾äºÍobject¶ÔÏó
-	 * ½á¹û£ºÓ°ÏìµÄĞĞÊı ·µ»Ø½á¹ûÊÇint
+	 * åŠŸèƒ½ï¼šå¢åˆ æ”¹
+	 * å‚æ•°ï¼šä¼ å…¥çš„æ˜¯sqlè¯­å¥å’Œobjectå¯¹è±¡
+	 * ç»“æœï¼šå½±å“çš„è¡Œæ•° è¿”å›ç»“æœæ˜¯int
 	 * */
 	public int executeSql(String sql, Object... values) {
 		int result = 0;
@@ -69,9 +63,9 @@ public class DBhelper {
 	}
 
 	/**
-	 * ¹¦ÄÜ£º²éÑ¯  ·µ»Ø½á¹û¼¯
-	 * ²ÎÊı£º´«ÈëµÄÊÇsqlÓï¾äºÍobject¶ÔÏó
-	 * ½á¹û£ºÓ°ÏìµÄĞĞÊı ·µ»Ø½á¹û½á¹û¼¯
+	 * åŠŸèƒ½ï¼šæŸ¥è¯¢  è¿”å›ç»“æœé›†
+	 * å‚æ•°ï¼šä¼ å…¥çš„æ˜¯sqlè¯­å¥å’Œobjectå¯¹è±¡
+	 * ç»“æœï¼šå½±å“çš„è¡Œæ•° è¿”å›ç»“æœç»“æœé›†
 	 * */
 	public ResultSet executeQuery(String sql, Object... values) {
 
@@ -90,9 +84,9 @@ public class DBhelper {
 	}
 
 	/**
-	 * ¹Ø±Õ×ÊÔ´
-	 * ÏÈ¹Ø±Õrs-preparedStatement-connection
-	 * Ë³Ğò£ºÓÉÄÚ¶øÍâµÄË³Ğò
+	 * å…³é—­èµ„æº
+	 * å…ˆå…³é—­rs-preparedStatement-connection
+	 * é¡ºåºï¼šç”±å†…è€Œå¤–çš„é¡ºåº
 	 * */
 	public void close() {
 		close(rs);

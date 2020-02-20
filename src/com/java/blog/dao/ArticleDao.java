@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-20下午3:06:49
- *
- *作者：张国宝
- *功能：TODO
- */
 package com.java.blog.dao;
 
 import java.sql.ResultSet;

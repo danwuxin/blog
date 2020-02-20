@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-27下午3:25:29
- *
- *作者：张国宝
- *功能：TODO
- */
 package com.java.blog.service;
 
 import com.java.blog.dao.CommentDao;

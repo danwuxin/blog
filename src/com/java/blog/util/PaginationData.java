@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-30上午12:30:36
- *
- *作者：张国宝
- *功能：保存分页的数据
- */
 package com.java.blog.util;
 
 import com.java.blog.vo.ArticleVo;

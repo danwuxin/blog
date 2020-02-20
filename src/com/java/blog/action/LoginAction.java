@@ -1,10 +1,4 @@
-/**
- *时间：2014-7-15下午3:57:50
- *
- *作者：张国宝
- *功能：TODO
- */
-package com.hchx.action;
+package com.java.blog.action;
 
 import com.java.blog.entity.User;
 import com.java.blog.service.UserService;

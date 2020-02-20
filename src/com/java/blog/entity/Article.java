@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-20下午2:50:50
- *  文章实体类
- *作者：张国宝
- *功能：TODO
- */
 package com.java.blog.entity;
 
 import com.java.blog.entity.User;

@@ -1,9 +1,3 @@
-/**
- *时间：2014-4-18上午10:07:11
- *user实体类
- *作者：张国宝
- *功能：TODO
- */
 package com.java.blog.entity;
 
 public class User {
