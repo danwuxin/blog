@@ -1,9 +1,9 @@
 /**
-*Ê±¼ä£º2014-4-27ÏÂÎç3:25:29
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºTODO
-*/
+ *æ—¶é—´ï¼š2014-4-27ä¸‹åˆ3:25:29
+ *
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
+ */
 package com.java.blog.service;
 
 import com.java.blog.dao.CommentDao;
@@ -13,24 +13,22 @@ import com.java.blog.entity.User;
 
 import java.util.List;
 
-
-
 public class CommentService {
 	private CommentDao commentDao = new CommentDao();
 	private UserDao userDao = new UserDao();
 	/**
-	 * ²éÑ¯Ä³ÆªÎÄÕÂµÄÆÀÂÛÒµÎñ
+	 * æŸ¥è¯¢æŸç¯‡æ–‡ç« çš„è¯„è®ºä¸šåŠ¡
 	 * */
 	public List<Comment> findCommentByArticleId(int articleId){
 		return commentDao.findByArticleId(articleId);
 	}
 	/**
-	 * Ôö¼ÓÎÄÕÂÆÀÂÛÒµÎñ
+	 * å¢åŠ æ–‡ç« è¯„è®ºä¸šåŠ¡
 	 * */
 	public boolean addComment(Comment comment) {
 		boolean result = commentDao.insert(comment)> 0;
 		if (result) {
-			// Ìí¼Ó¸½¼ÓµÄÒµÎñ£¬¸ø·¢±íÆÀÂÛµÄÓÃ»§Ôö¼Ó»ı·Ö
+			// æ·»åŠ é™„åŠ çš„ä¸šåŠ¡ï¼Œç»™å‘è¡¨è¯„è®ºçš„ç”¨æˆ·å¢åŠ ç§¯åˆ†
 			User originalUser = userDao.findUserById(comment.getUser().getUserid());
 			originalUser.setIntegrals(originalUser.getIntegrals() + 1);
 			userDao.updateUser(originalUser);

@@ -1,9 +1,3 @@
-/**
- *ʱ�䣺2014-7-15����4:18:37
- *
- *���ߣ��Ź���
- *���ܣ�TODO
- */
 package com.java.mvc;
 
 import java.lang.reflect.Method;

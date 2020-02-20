@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç11:08:51
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ11:08:51
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -22,27 +22,27 @@ public class SetPesionInfoAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// ÉèÖÃ×Ö·û¼¯
+		// è®¾ç½®å­—ç¬¦é›†
 		// response.setHeader("content-type","text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// ½ÓÊÜÊı¾İ
+		// æ¥å—æ•°æ®
 		String name = request.getParameter("name");
 		String age = request.getParameter("age");
 		String gender = request.getParameter("gender");
 		String imageUrl = request.getParameter("imageUrl");
 
-		// ÑéÖ¤ĞÕÃûÊı¾İ
+		// éªŒè¯å§“åæ•°æ®
 		if (null == name || name.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÓÃ»§ÕæÊµĞÕÃû²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "ç”¨æˆ·çœŸå®å§“åä¸èƒ½ä¸ºç©ºã€‚");
 //			request.getRequestDispatcher("setPesionInfo.jsp").forward(request,
 //					response);
 //			return;
 			return new ActionForward("/setPesionInfo.jsp", true);
 		}
-		// ÑéÖ¤ÄêÁäÊı¾İ
+		// éªŒè¯å¹´é¾„æ•°æ®
 
 		if (null == age || age.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÕæÊµÄêÁä²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "çœŸå®å¹´é¾„ä¸èƒ½ä¸ºç©ºã€‚");
 //			request.getRequestDispatcher("setPesionInfo.jsp").forward(request,
 //					response);
 //			return;
@@ -52,14 +52,14 @@ public class SetPesionInfoAction implements Action {
 			try {
 				int tmp = Integer.parseInt(age);
 				if (tmp < 16 || tmp > 100) {
-					request.setAttribute("errorInfo", "ÄêÁä±ØĞëÔÚ16µ½60Ö®¼ä¡£");
+					request.setAttribute("errorInfo", "å¹´é¾„å¿…é¡»åœ¨16åˆ°60ä¹‹é—´ã€‚");
 //					request.getRequestDispatcher("setPesionInfo.jsp").forward(
 //							request, response);
-//					return; // Ò»¶¨ÒªÓĞ£¬·ñÔòºóÃæ¼ÌĞøÖ´ĞĞ£¬½«±¨´í
+//					return; // ä¸€å®šè¦æœ‰ï¼Œå¦åˆ™åé¢ç»§ç»­æ‰§è¡Œï¼Œå°†æŠ¥é”™
 					return new ActionForward("/setPesionInfo.jsp", true);
 				}
 			} catch (Exception e) {
-				request.setAttribute(" errorInfo", "ÄêÁä¸ñÊ½´íÎó¡£");
+				request.setAttribute(" errorInfo", "å¹´é¾„æ ¼å¼é”™è¯¯ã€‚");
 //				request.getRequestDispatcher("setPesionInfo.jsp").forward(
 //						request, response);
 //				return;
@@ -67,9 +67,9 @@ public class SetPesionInfoAction implements Action {
 			}
 
 		}
-		// µ÷ÓÃservice²ã
+		// è°ƒç”¨serviceå±‚
 		UserService userService = new UserService();
-		// ´ÓsessionÖĞÈ¡³öuser
+		// ä»sessionä¸­å–å‡ºuser
 		User olduser = (User) request.getSession().getAttribute("user");
 
 		User tmpUser = new User();
@@ -81,14 +81,14 @@ public class SetPesionInfoAction implements Action {
 
 		User updatedUser = userService.updateUser(tmpUser);
 
-		// 5¡¢ÅĞ¶Ï½á¹û²¢Ìø×ª
+		// 5ã€åˆ¤æ–­ç»“æœå¹¶è·³è½¬
 		if (updatedUser == null) {
 			request.setAttribute("errorInfo", userService.getErrorMessage());
 //			request.getRequestDispatcher("setPesionInfo.jsp").forward(request,
 //					response);
 			return new ActionForward("/setPesionInfo.jsp", true);
 		} else {
-			// ÖØĞÂ±£´æUser¶ÔÏóµ½sessionÖĞ
+			// é‡æ–°ä¿å­˜Userå¯¹è±¡åˆ°sessionä¸­
 			request.getSession().setAttribute("user", updatedUser);
 //			response.sendRedirect("ok.jsp");
 			return new ActionForward("/ok.jsp", false);

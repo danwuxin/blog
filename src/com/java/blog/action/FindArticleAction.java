@@ -1,9 +1,9 @@
 /**
-*Ê±¼ä£º2014-7-16ÉÏÎç12:06:17
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºTODO
-*/
+ *æ—¶é—´ï¼š2014-7-16ä¸Šåˆ12:06:17
+ *
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
+ */
 package com.java.blog.action;
 
 import com.java.blog.entity.Article;
@@ -15,25 +15,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class FindArticleAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// 1¡¢»ñÈ¡ÒªĞŞ¸ÄµÄÎÄÕÂId
-				int articleId = Integer.parseInt(request.getParameter("articleId"));
-				// 2¡¢»ñÈ¡ÒªĞŞ¸ÄµÄÎÄÕÂ²¢±£´æµ½requestÖĞ
-				ArticleService articleService = new ArticleService();
-				Article article = articleService.findArticleById(articleId);
-				article.setContents(article.getContents().replace("<br/>", "\n"));
-				request.setAttribute("article", article);
-				// 3¡¢Ìø×ªµ½ĞŞ¸ÄÎÄÕÂµÄÒ³Ãæ
+		// 1ã€è·å–è¦ä¿®æ”¹çš„æ–‡ç« Id
+		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		// 2ã€è·å–è¦ä¿®æ”¹çš„æ–‡ç« å¹¶ä¿å­˜åˆ°requestä¸­
+		ArticleService articleService = new ArticleService();
+		Article article = articleService.findArticleById(articleId);
+		article.setContents(article.getContents().replace("<br/>", "\n"));
+		request.setAttribute("article", article);
+		// 3ã€è·³è½¬åˆ°ä¿®æ”¹æ–‡ç« çš„é¡µé¢
 //				request.getRequestDispatcher("updateArticle.jsp").forward(request,
 //						response);
-				return new ActionForward("updateArticle.jsp", true);
+		return new ActionForward("updateArticle.jsp", true);
 
-			}
+	}
 
 }

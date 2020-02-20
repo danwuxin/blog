@@ -1,32 +1,32 @@
 /**
-*Ê±¼ä£º2014-4-20ÏÂÎç9:26:13
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºTODO
-*/
+ *æ—¶é—´ï¼š2014-4-20ä¸‹åˆ9:26:13
+ *
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
+ */
 package com.java.blog.dao;
-
-import com.java.blog.db.DBhelper;
-import com.java.blog.entity.Article;
-import com.java.blog.entity.Comment;
-import com.java.blog.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.java.blog.dao.ArticleDao;
+import com.java.blog.dao.UserDao;
+import com.java.blog.db.DBhelper;
+import com.java.blog.entity.Article;
+import com.java.blog.entity.Comment;
+import com.java.blog.entity.User;
 
 public class CommentDao {
 
 	public int deleteByArticleId(int articleId){
 		String sql = "delete from comments where ArticleId=?";
 		return new DBhelper().executeSql(sql, articleId) ;
-		
+
 	}
 	/**
-	 * ÏÔÊ¾Ä³ÆªÎÄÕÂµÄÆÀÂÛ
+	 * æ˜¾ç¤ºæŸç¯‡æ–‡ç« çš„è¯„è®º
 	 * */
 	public List<Comment> findByArticleId(int articleId) {
 		List<Comment> list = new ArrayList<Comment>();
@@ -46,19 +46,19 @@ public class CommentDao {
 		return list;
 	}
 
-	// °Ñrs×ª»»³ÉComment¶ÔÏóµÄ·½·¨
+	// æŠŠrsè½¬æ¢æˆCommentå¯¹è±¡çš„æ–¹æ³•
 	private Comment rs2Comment(ResultSet rs) throws SQLException {
 		Comment comment = new Comment();
 
-		comment.setCommentId(rs.getInt("commentId")); 
+		comment.setCommentId(rs.getInt("commentId"));
 		comment.setContent(rs.getString("Content"));
 		comment.setPostTime(rs.getTimestamp("PostTime"));
 
-		// ´ÓUserDaoÖĞ»ñÈ¡user¶ÔÏó
+		// ä»UserDaoä¸­è·å–userå¯¹è±¡
 		int user_Id = rs.getInt("UserId");
 		User user = new UserDao().findUserById(user_Id);
 		comment.setUser(user);
-		// ´ÓArticleDaoÖĞ»ñÈ¡article¶ÔÏó
+		// ä»ArticleDaoä¸­è·å–articleå¯¹è±¡
 		int articleId = rs.getInt("ArticleId");
 		Article article = new ArticleDao().findByArticleId(articleId);
 		comment.setArticle(article);
@@ -66,8 +66,8 @@ public class CommentDao {
 		return comment;
 	}
 	/**
-	 * Ôö¼ÓÎÄÕÂÆÀÂÛ
-	 * sqlÓï¾äÊÇÔÚcomments±íÖĞ²åÈëÒ»ÌõÆÀÂÛÓï¡£
+	 * å¢åŠ æ–‡ç« è¯„è®º
+	 * sqlè¯­å¥æ˜¯åœ¨commentsè¡¨ä¸­æ’å…¥ä¸€æ¡è¯„è®ºè¯­ã€‚
 	 * */
 	public int insert(Comment comment) {
 		String sql = "insert into comments(Content,PostTime,ArticleId,UserId) values(?,?,?,?)";

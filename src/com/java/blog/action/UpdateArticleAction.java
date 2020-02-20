@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç11:46:34
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ11:46:34
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -23,36 +23,36 @@ public class UpdateArticleAction implements Action {
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
-		// ÉèÖÃ×Ö·û¼¯
+		// è®¾ç½®å­—ç¬¦é›†
 		// response.setHeader("content-type","text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// ½ÓÊÜÊı¾İ
+		// æ¥å—æ•°æ®
 		String articleid = request.getParameter("articleid");
 		String contents = request.getParameter("contents");
 		String ArticleTitle = request.getParameter("ArticleTitle");
-		// ÑéÖ¤±êÌâÊı¾İ
+		// éªŒè¯æ ‡é¢˜æ•°æ®
 		if (null == ArticleTitle || ArticleTitle.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÎÄÕÂ±êÌâ²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "æ–‡ç« æ ‡é¢˜ä¸èƒ½ä¸ºç©ºã€‚");
 			// request.getRequestDispatcher("addArticle.jsp").forward(request,
 			// response);
 			// return;
 			return new ActionForward("/addArticle.jsp", true);
 		}
-		// ÑéÖ¤ÄÚÈİÊı¾İ
+		// éªŒè¯å†…å®¹æ•°æ®
 
 		if (null == contents || contents.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÎÄÕÂÄÚÈİ²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "æ–‡ç« å†…å®¹ä¸èƒ½ä¸ºç©ºã€‚");
 			// request.getRequestDispatcher("addArticle.jsp").forward(request,
 			// response);
 			// return;
 			return new ActionForward("/addArticle.jsp", true);
 		}
 
-		// µ÷ÓÃÒµÎñ²ã
+		// è°ƒç”¨ä¸šåŠ¡å±‚
 		ArticleService articleService = new ArticleService();
 
 		Article article = new Article();
-		// ÉèÖÃÒª¸üĞÂµÄÊı¾İ
+		// è®¾ç½®è¦æ›´æ–°çš„æ•°æ®
 		article.setTitle(ArticleTitle);
 		article.setContents(contents.replace("\n", "<br/>"));
 		article.setArticleId(Integer.parseInt(articleid));
@@ -62,7 +62,7 @@ public class UpdateArticleAction implements Action {
 			// response.sendRedirect("/ListArticleServlet");
 			return new ActionForward("/ListArticle.do", false);
 		} else {
-			request.setAttribute("errorInfo", "¸üĞÂÎÄÕÂÊ§°Ü¡£");
+			request.setAttribute("errorInfo", "æ›´æ–°æ–‡ç« å¤±è´¥ã€‚");
 			// request.getRequestDispatcher("updateArticle.jsp").forward(request,
 			// response);
 			return new ActionForward("/updateArticle.jsp", true);

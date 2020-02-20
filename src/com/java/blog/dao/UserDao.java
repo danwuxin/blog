@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-4-18ÉÏÎç10:08:22
+ *æ—¶é—´ï¼š2014-4-18ä¸Šåˆ10:08:22
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.dao;
 
@@ -16,16 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class UserDao {
 
-	// Ôö¼ÓÒ»¸öÓÃ»§
-	 /**
-	  * ÓÃ»§ÔÙ²éÍêÕËºÅÊÇ·ñÖØ¸´ºó£¬Ã»ÓĞÖØ¸´µ÷ÓÃadd£¨£©½øĞĞ×¢²á
-	  * sqlÎªÔö¼ÓÒ»¸öÓÃ»§µÄÓï¾ä
-	  * */
+	// å¢åŠ ä¸€ä¸ªç”¨æˆ·
+	/**
+	 * ç”¨æˆ·å†æŸ¥å®Œè´¦å·æ˜¯å¦é‡å¤åï¼Œæ²¡æœ‰é‡å¤è°ƒç”¨addï¼ˆï¼‰è¿›è¡Œæ³¨å†Œ
+	 * sqlä¸ºå¢åŠ ä¸€ä¸ªç”¨æˆ·çš„è¯­å¥
+	 * */
 	public int add(User user) {
 		int result = 0;
-		String sql = "insert into users(account,password,name,imageurl,age,gender,integrals)values(?,?,?,?,20,'ÄĞ',100)";
+		String sql = "insert into users(account,password,name,imageurl,age,gender,integrals)values(?,?,?,?,20,'ç”·',100)";
 		DBhelper helper = new DBhelper();
 		result = helper.executeSql(sql, user.getAccount(), user.getPassword(),
 				user.getName(), user.getImageUrl());
@@ -33,9 +34,9 @@ public class UserDao {
 
 	}
 
-	// ÒÀ¾İÕËºÅ²éÑ¯ÓÃ»§
+	// ä¾æ®è´¦å·æŸ¥è¯¢ç”¨æˆ·
 	/**
-	 * ÓÃ»§×¢²áÊ±Ê¹ÓÃ   ²éÊÇ·ñÓĞÕËºÅÖØ¸´
+	 * ç”¨æˆ·æ³¨å†Œæ—¶ä½¿ç”¨   æŸ¥æ˜¯å¦æœ‰è´¦å·é‡å¤
 	 * */
 	public User findUser(String account) {
 		User user = null;
@@ -53,10 +54,10 @@ public class UserDao {
 		return user;
 	}
 
-	// ÒÀ¾İÕËºÅºÍÃÜÂë²éÑ¯ÓÃ»§
+	// ä¾æ®è´¦å·å’Œå¯†ç æŸ¥è¯¢ç”¨æˆ·
 	/**
-	 * ÓÃ»§µÇÂ¼   ²ÎÊıaccount password
-	 * sqlÓï¾äÊÇ¸ù¾İaccount password´ÓÊı¾İ¿âÖĞ²éÑ¯ÓÃ»§  ·µ»ØÒ»¸öÓÃ»§
+	 * ç”¨æˆ·ç™»å½•   å‚æ•°account password
+	 * sqlè¯­å¥æ˜¯æ ¹æ®account passwordä»æ•°æ®åº“ä¸­æŸ¥è¯¢ç”¨æˆ·  è¿”å›ä¸€ä¸ªç”¨æˆ·
 	 * */
 	public User findUser(String account, String password) {
 		User user = null;
@@ -76,7 +77,7 @@ public class UserDao {
 	}
 
 	/**
-	 *  ÒÀ¾İÓÃ»§µÄuserid²éÑ¯ÓÃ»§
+	 *  ä¾æ®ç”¨æˆ·çš„useridæŸ¥è¯¢ç”¨æˆ·
 	 * @param userid
 	 * @author danwuxin
 	 * return user
@@ -109,9 +110,9 @@ public class UserDao {
 		user.setGender(rs.getString("gender"));
 		return user;
 	}
-     /**
-      * ¸üĞÂÓÃ»§µÄĞÅÏ¢
-      * */
+	/**
+	 * æ›´æ–°ç”¨æˆ·çš„ä¿¡æ¯
+	 * */
 	public int updateUser(User user) {
 		int result = 0;
 		String sql = "update users Set account=?,password=?,name=?,imageurl=?,age=?,gender=?,integrals=? where userid=?";
@@ -121,9 +122,9 @@ public class UserDao {
 				user.getGender(), user.getIntegrals(), user.getUserid());
 		return result;
 	}
-    /**
-     * ²éÑ¯³ö×î»îÔ¾µÄÎå¸öÓÃ»§
-     * */
+	/**
+	 * æŸ¥è¯¢å‡ºæœ€æ´»è·ƒçš„äº”ä¸ªç”¨æˆ·
+	 * */
 	public List<UserVo> findTop5User() {
 		List<UserVo> users = new ArrayList<UserVo>();
 		String sql = "select UserId,count(*) as articleCount from articles GROUP BY UserId ORDER BY count(*) DESC limit 0,5";
@@ -134,11 +135,11 @@ public class UserDao {
 				int userId = rs.getInt("UserId");
 				User user = findUserById(userId);
 				int articleCount = rs.getInt("articleCount");
-				
+
 				UserVo userVo = new UserVo();
 				userVo.setUser(user);
 				userVo.setArticleCount(articleCount);
-				
+
 				users.add(userVo);
 			}
 		} catch (SQLException e) {

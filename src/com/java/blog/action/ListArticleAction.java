@@ -1,9 +1,9 @@
 /**
-*Ê±¼ä£º2014-7-16ÉÏÎç12:11:07
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºTODO
-*/
+ *æ—¶é—´ï¼š2014-7-16ä¸Šåˆ12:11:07
+ *
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
+ */
 package com.java.blog.action;
 
 import com.java.blog.entity.Article;
@@ -18,25 +18,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class ListArticleAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		//´ÓÊı¾İ¿âÖĞ²éÑ¯µÇÂ½ÓÃ»§µÄËùÓĞÎÄÕÂ
+		//ä»æ•°æ®åº“ä¸­æŸ¥è¯¢ç™»é™†ç”¨æˆ·çš„æ‰€æœ‰æ–‡ç« 
 		User user = (User)request.getSession().getAttribute("user");
 		ArticleService articleService = new ArticleService();
 
 		List<Article> articles = articleService.findByUserId(user.getUserid());
-		//²éÕÒµÄ½á¹û±£´æµ½RequestÖĞ
-		request.setAttribute("articles", articles);		
-		// Ò³ÃæÌø×ª
+		//æŸ¥æ‰¾çš„ç»“æœä¿å­˜åˆ°Requestä¸­
+		request.setAttribute("articles", articles);
+		// é¡µé¢è·³è½¬
 //		request.getRequestDispatcher("listArticle.jsp").forward(request,
 //				response);
 		return new ActionForward("/listArticle.jsp", true);
-	
+
 	}
 
 }

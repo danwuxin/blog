@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-16ÏÂÎç5:04:26
+ *æ—¶é—´ï¼š2014-7-16ä¸‹åˆ5:04:26
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -25,14 +25,14 @@ public class UserArticleListAction implements Action {
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		int pageIndex = 1;
-		// 1¡¢»ñÈ¡ÒªĞŞ¸ÄµÄÎÄÕÂId
+		// 1ã€è·å–è¦ä¿®æ”¹çš„æ–‡ç« Id
 		int userId =Integer.parseInt( request.getParameter("userId"));
 		String parameterPageIndex =request.getParameter("pageIndex");
 		if (parameterPageIndex != null) {
-			// Èç¹û»ñÈ¡µ½£¬Ôò×ª»»
+			// å¦‚æœè·å–åˆ°ï¼Œåˆ™è½¬æ¢
 			pageIndex = Integer.parseInt(parameterPageIndex);
 		}
-		// 2¡¢µ÷ÓÃService²ãµÄ·½·¨£¬»ñÈ¡¸ÃÓÃ»§·¢±íµÄÎÄÕÂÁĞ±í
+		// 2ã€è°ƒç”¨Serviceå±‚çš„æ–¹æ³•ï¼Œè·å–è¯¥ç”¨æˆ·å‘è¡¨çš„æ–‡ç« åˆ—è¡¨
 		UserService userService = new UserService();
 		User selectedUser = userService.findByUserId(userId);
 		request.setAttribute("selectedUser", selectedUser);
@@ -43,18 +43,18 @@ public class UserArticleListAction implements Action {
 				.getUserArticleVoByPaging(pageIndex, userId);
 		request.setAttribute("paginationData", paginationData);
 
-		// 2¡¢µ÷ÓÃService²ãµÄ·½·¨£¬»ñÈ¡¸ÃÓÃ»§·¢±íµÄÎÄÕÂÁĞ±í
+		// 2ã€è°ƒç”¨Serviceå±‚çš„æ–¹æ³•ï¼Œè·å–è¯¥ç”¨æˆ·å‘è¡¨çš„æ–‡ç« åˆ—è¡¨
 		/*
 		 * ArticleService articleService = new ArticleService(); List<ArticleVo>
 		 * articleVos = articleService .getArticleVoByUserId(userId);
 		 * request.setAttribute("articleVos", articleVos);
 		 */
-		// 3¡¢Ìø×ªÏÔÊ¾ÎÄÕÂÁĞ±íµÄ½çÃæ
+		// 3ã€è·³è½¬æ˜¾ç¤ºæ–‡ç« åˆ—è¡¨çš„ç•Œé¢
 //		request.getRequestDispatcher("listUserArticle.jsp").forward(request,
 //				response);
-	return new ActionForward("/listUserArticle.jsp", true);	
-		
- 
+		return new ActionForward("/listUserArticle.jsp", true);
+
+
 	}
 
 }

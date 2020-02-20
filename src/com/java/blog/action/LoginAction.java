@@ -1,10 +1,10 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç3:57:50
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ3:57:50
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
-package com.java.blog.action;
+package com.hchx.action;
 
 import com.java.blog.entity.User;
 import com.java.blog.service.UserService;
@@ -18,60 +18,59 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class LoginAction implements Action {
-	
-	@Override          
+
+	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
-		// ÉèÖÃ×Ö·û¼¯
+		// è®¾ç½®å­—ç¬¦é›†
 		//response.setHeader("content-type", "text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// ½ÓÊÜÊı¾İ ÕËºÅ ÃÜÂë È·ÈÏÃÜÂë
+		// æ¥å—æ•°æ® è´¦å· å¯†ç  ç¡®è®¤å¯†ç 
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		String[] rememberMe = request.getParameterValues("rememberMe");
-		// ÑéÖ¤ÕËºÅÊı¾İ
+		// éªŒè¯è´¦å·æ•°æ®
 		if (null == account || account.trim().length() == 0) {
-			request.setAttribute("errorInfo", "µÇÂ¼ÕËºÅ²»ÄÜÎª¿Õ¡£");
-			
+			request.setAttribute("errorInfo", "ç™»å½•è´¦å·ä¸èƒ½ä¸ºç©ºã€‚");
+
 			return new ActionForward("/index.jsp", true);
 		}
-		// ÑéÖ¤ÃÜÂëÊı¾İ
+		// éªŒè¯å¯†ç æ•°æ®
 		if (null == password || password.trim().length() == 0) {
-			request.setAttribute("errorInfo", "µÇÂ¼ÃÜÂë²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "ç™»å½•å¯†ç ä¸èƒ½ä¸ºç©ºã€‚");
 			return new ActionForward("/index.jsp", true);
 		}
-		// µ÷ÓÃservice²ã
+		// è°ƒç”¨serviceå±‚
 		UserService userService = new UserService();
 		User user = userService.login(account, password);
 
-		// ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¿Õ
+		// åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ä¸ºç©º
 		if (user == null) {
-			request.setAttribute("errorInfo", "µÇÂ¼ÕËºÅ»òµÇÂ¼ÃÜÂë´íÎó¡£");
+			request.setAttribute("errorInfo", "ç™»å½•è´¦å·æˆ–ç™»å½•å¯†ç é”™è¯¯ã€‚");
 //			request.getRequestDispatcher("index.jsp")
 //					.forward(request, response);
 			return new ActionForward("/index.jsp", true);
 		} else {
-			// ÓÃ»§ĞÅÏ¢±£´æµ½userÖĞ
+			// ç”¨æˆ·ä¿¡æ¯ä¿å­˜åˆ°userä¸­
 			request.getSession().setAttribute("user", user);
 
-			// ÅĞ¶ÏÓÃ»§ÊÇ·ñ¹´Ñ¡ÁË¼Ç×¡ÎÒ
+			// åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å‹¾é€‰äº†è®°ä½æˆ‘
 			if (rememberMe != null) {
 				if (rememberMe[0].equals("1")) {
-					// ±£´æÓÃ»§ĞÅÏ¢µ½cookieÖĞ
+					// ä¿å­˜ç”¨æˆ·ä¿¡æ¯åˆ°cookieä¸­
 					Cookie cookieUserid = new Cookie("userid",
 							URLEncoder.encode(user.getUserid() + "", "utf-8"));
 					cookieUserid.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(cookieUserid);
 				}
 			}
-			// Ò³ÃæÌø×ª
+			// é¡µé¢è·³è½¬
 			return new ActionForward("/index.jsp", false);
 		}
 
-	
-		
+
+
 
 	}
 }

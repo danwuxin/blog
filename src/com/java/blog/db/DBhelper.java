@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DBhelper {
 
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://10.255.105.101:3306/blog?useUnicode=true&characterEncoding=utf-8";
+	public static final String URL = "jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8";
 	private Connection connection = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet rs = null;
@@ -38,7 +38,7 @@ public class DBhelper {
 	public Connection getconnection() {
 		loadDriver();
 		try {
-			connection = DriverManager.getConnection(URL,"root","132wisdom");
+			connection = DriverManager.getConnection(URL,"root","root");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

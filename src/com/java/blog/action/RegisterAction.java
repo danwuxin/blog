@@ -1,9 +1,9 @@
 /**
-*Ê±¼ä£º2014-7-15ÏÂÎç6:43:58
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºTODO
-*/
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ6:43:58
+ *
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
+ */
 package com.java.blog.action;
 
 import com.java.blog.entity.User;
@@ -18,79 +18,79 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RegisterAction implements Action {
 
-	@Override
-	public ActionForward execute(HttpServletRequest request,
-								 HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		//ÉèÖÃ×Ö·û¼¯
-				request.setCharacterEncoding("utf-8");
-				//½ÓÊÜÊı¾İ  ÕËºÅ  ĞÕÃû  ÃÜÂë  È·ÈÏÃÜÂë  Í·Ïñ
-				String account = request.getParameter("account");
-				String name = request.getParameter("name");
-				String password = request.getParameter("password");
-				String confirmPassword = request.getParameter("confirmPassword");
-				String imageUrl = request.getParameter("imageUrl");
-			    //ÑéÖ¤ĞÕÃûÊı¾İ
-				if (null == name || name.trim().length() == 0) {
-					request.setAttribute("errorInfo", "ÕæÊµĞÕÃû²»ÄÜÎª¿Õ¡£");
+    @Override
+    public ActionForward execute(HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
+        // TODO Auto-generated method stub
+        //è®¾ç½®å­—ç¬¦é›†
+        request.setCharacterEncoding("utf-8");
+        //æ¥å—æ•°æ®  è´¦å·  å§“å  å¯†ç   ç¡®è®¤å¯†ç   å¤´åƒ
+        String account = request.getParameter("account");
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+        String imageUrl = request.getParameter("imageUrl");
+        //éªŒè¯å§“åæ•°æ®
+        if (null == name || name.trim().length() == 0) {
+            request.setAttribute("errorInfo", "çœŸå®å§“åä¸èƒ½ä¸ºç©ºã€‚");
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //							response);
 //					return ;
-					return new ActionForward("/register.jsp", true);
-					
-				}
-				//ÑéÖ¤ÕËºÅÊı¾İ
-				if (null == account || account.trim().length() == 0) {
-					request.setAttribute("errorInfo", "µÇÂ¼ÕËºÅ²»ÄÜÎª¿Õ¡£");
+            return new ActionForward("/register.jsp", true);
+
+        }
+        //éªŒè¯è´¦å·æ•°æ®
+        if (null == account || account.trim().length() == 0) {
+            request.setAttribute("errorInfo", "ç™»å½•è´¦å·ä¸èƒ½ä¸ºç©ºã€‚");
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //							response);
 //					return;
-					return new ActionForward("/register.jsp", true);
-				}
-				
-				//ÑéÖ¤ÃÜÂëÊı¾İ
-				if (null == password || password.trim().length() == 0) {
-					request.setAttribute("errorInfo", "µÇÂ¼ÃÜÂë²»ÄÜÎª¿Õ¡£");
+            return new ActionForward("/register.jsp", true);
+        }
+
+        //éªŒè¯å¯†ç æ•°æ®
+        if (null == password || password.trim().length() == 0) {
+            request.setAttribute("errorInfo", "ç™»å½•å¯†ç ä¸èƒ½ä¸ºç©ºã€‚");
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //							response);
 //					return;
-					return new ActionForward("/register.jsp", true);
-				}
-				//ÑéÖ¤È·ÈÏÃÜÂëÊı¾İ
-				if (null == confirmPassword || confirmPassword.trim().length() == 0) {
-					request.setAttribute("errorInfo", "µÇÂ¼ÃÜÂë²»ÄÜÎª¿Õ¡£");
+            return new ActionForward("/register.jsp", true);
+        }
+        //éªŒè¯ç¡®è®¤å¯†ç æ•°æ®
+        if (null == confirmPassword || confirmPassword.trim().length() == 0) {
+            request.setAttribute("errorInfo", "ç™»å½•å¯†ç ä¸èƒ½ä¸ºç©ºã€‚");
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //						response);
 //					return;
-					return new ActionForward("/register.jsp", true);
-				}
-				if (!password.equals(confirmPassword)) {
-					request.setAttribute("errorInfo", "Á½´ÎÃÜÂëÊäÈëµÄ²»Ò»ÖÂ¡£");
+            return new ActionForward("/register.jsp", true);
+        }
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("errorInfo", "ä¸¤æ¬¡å¯†ç è¾“å…¥çš„ä¸ä¸€è‡´ã€‚");
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //							response);
 //					return;
-					return new ActionForward("/register.jsp", true);
-				}
-				
-				//new Ò»¸öÓÃ»§¶ÔÏó  ½«½ÓÊÕµ½µÄÊı¾İ¸ønew³öÀ´µÄÓÃ»§
-				User user = new User();
-				user.setAccount(account);
-				user.setName(name);
-				user.setPassword(password);
-				user.setImageUrl(imageUrl);
-				//µ÷ÓÃuser  service²ã   Ê¹ÓÃservice²ãµÄÒµÎñ
-			    UserService userService = new UserService();
-				boolean result = userService.register(user);
-				//ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¿Õ
-				if (!result) {
-					request.setAttribute("errorInfo", userService.getErrorMessage());
+            return new ActionForward("/register.jsp", true);
+        }
+
+        //new ä¸€ä¸ªç”¨æˆ·å¯¹è±¡  å°†æ¥æ”¶åˆ°çš„æ•°æ®ç»™newå‡ºæ¥çš„ç”¨æˆ·
+        User user = new User();
+        user.setAccount(account);
+        user.setName(name);
+        user.setPassword(password);
+        user.setImageUrl(imageUrl);
+        //è°ƒç”¨user  serviceå±‚   ä½¿ç”¨serviceå±‚çš„ä¸šåŠ¡
+        UserService userService = new UserService();
+        boolean result = userService.register(user);
+        //åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ä¸ºç©º
+        if (!result) {
+            request.setAttribute("errorInfo", userService.getErrorMessage());
 //					request.getRequestDispatcher("register.jsp").forward(request,
 //							response);
-					return new ActionForward("/register.jsp", true);
-				} else {
+            return new ActionForward("/register.jsp", true);
+        } else {
 //					response.sendRedirect("index.jsp");
-					return new ActionForward("/index.jsp", false);
-				}
-	}
+            return new ActionForward("/index.jsp", false);
+        }
+    }
 
 }

@@ -1,18 +1,11 @@
-/**
-*Ê±¼ä£º2014-4-27ÏÂÎç5:08:01
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºÓÃ»§voÊµÌåÀà
-*/
 package com.java.blog.vo;
-
 
 import com.java.blog.entity.User;
 
 public class UserVo {
-    //ÎÄÕÂ×÷Õß
+	//æ–‡ç« ä½œè€…
 	private User user;
-	//ÎÄÕÂµã»÷Êı
+	//æ–‡ç« ç‚¹å‡»æ•°
 	private int articleCount;
 
 	public User getUser() {
@@ -30,5 +23,5 @@ public class UserVo {
 	public void setArticleCount(int articleCount) {
 		this.articleCount = articleCount;
 	}
-	
+
 }

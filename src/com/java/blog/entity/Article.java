@@ -1,24 +1,26 @@
 /**
- *Ê±¼ä£º2014-4-20ÏÂÎç2:50:50
- *  ÎÄÕÂÊµÌåÀà
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *æ—¶é—´ï¼š2014-4-20ä¸‹åˆ2:50:50
+ *  æ–‡ç« å®ä½“ç±»
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.entity;
 
+import com.java.blog.entity.User;
+
 import java.util.Date;
 public class Article {
-    //ÎÄÕÂid intÀàĞÍ
+	//æ–‡ç« id intç±»å‹
 	private int articleId;
-	//ÎÄÕÂ±êÌâ  string ÀàĞÍ
+	//æ–‡ç« æ ‡é¢˜  string ç±»å‹
 	private String title;
-	//ÎÄÕÂÄÚÈİ  string ÀàĞÍ
+	//æ–‡ç« å†…å®¹  string ç±»å‹
 	private String contents;
-	//ÎÄÕÂ·¢±íÈÕÆÚ   dateÀàĞÍ
+	//æ–‡ç« å‘è¡¨æ—¥æœŸ   dateç±»å‹
 	private Date postTime;
-	//ÎÄÕÂµã»÷´ÎÊı  intÀàĞÍ
+	//æ–‡ç« ç‚¹å‡»æ¬¡æ•°  intç±»å‹
 	private int clicks;
-	//ÎÄÕÂ×÷Õß   ÒıÓÃUserÊµÌåÀà
+	//æ–‡ç« ä½œè€…   å¼•ç”¨Userå®ä½“ç±»
 	private User user;
 
 	public int getArticleId() {
@@ -68,14 +70,14 @@ public class Article {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	//½ØÈ¡ÎÄÕÂÇ°100×ÖÄÚÈİ·Åµ½indexÒ³ÃæÏÔÊ¾
+	//æˆªå–æ–‡ç« å‰100å­—å†…å®¹æ”¾åˆ°indexé¡µé¢æ˜¾ç¤º
 	public String getShortcontents() {
 		if (contents.length() > 100) {
-			return this.contents.substring(0, 100) + "¡£¡£¡£ÇëµÇÂ¼ºó²é¿´È«ÎÄ";
+			return this.contents.substring(0, 100) + "ã€‚ã€‚ã€‚è¯·ç™»å½•åæŸ¥çœ‹å…¨æ–‡";
 		}
 		return contents;
 	}
-	//½ØÈ¡¶Ì±êÌâ  ³¬¹ıÊ®¸ö×Ö¾ÍÓÃ...´úÌæ
+	//æˆªå–çŸ­æ ‡é¢˜  è¶…è¿‡åä¸ªå­—å°±ç”¨...ä»£æ›¿
 	public String getShortTitle() {
 		if (title.length() > 10) {
 			return this.title.substring(0, 10) + "...";

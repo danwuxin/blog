@@ -1,9 +1,3 @@
-/**
- *ʱ�䣺2014-7-14����9:08:56
- *
- *���ߣ��Ź���
- *���ܣ�TODO
- */
 package com.java.mvc;
 
 public class ActionForward {

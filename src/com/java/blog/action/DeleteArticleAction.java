@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç10:17:55
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ10:17:55
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -20,17 +20,17 @@ public class DeleteArticleAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// 1¡¢»ñÈ¡ÒªÉ¾³ıµÄÎÄÕÂId
+		// 1ã€è·å–è¦åˆ é™¤çš„æ–‡ç« Id
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		// 2¡¢É¾³ıÎÄÕÂ
+		// 2ã€åˆ é™¤æ–‡ç« 
 		ArticleService articleService = new ArticleService();
 		boolean result = articleService.deleteArticleById(articleId);
-		// 3¡¢Ìø×ªµ½¹ÜÀíÎÄÕÂµÄÒ³Ãæ
+		// 3ã€è·³è½¬åˆ°ç®¡ç†æ–‡ç« çš„é¡µé¢
 		if (result) {
 //			response.sendRedirect("ListArticleServlet");
 			return new ActionForward("/ListArticle.do", false);
 		} else {
-			request.setAttribute("errorInfo", "É¾³ıÎÄÕÂÊ§°Ü¡£");
+			request.setAttribute("errorInfo", "åˆ é™¤æ–‡ç« å¤±è´¥ã€‚");
 //			request.getRequestDispatcher("ListArticleServlet").forward(request,
 //					response);
 			return new ActionForward("/ListArticle.do", true);

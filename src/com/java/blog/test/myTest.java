@@ -1,46 +1,45 @@
 /**
- *Ê±¼ä£º2014-4-18ÉÏÎç10:41:49
+ *æ—¶é—´ï¼š2014-4-18ä¸Šåˆ10:41:49
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.test;
-
 
 import com.java.blog.entity.User;
 import com.java.blog.service.UserService;
 
 public class myTest {
-	public static void main1(String[] args) {
-		// Ä£ÄâÓÃ»§×¢²á(ÕËºÅÖØ¸´)
+	public static void main(String[] args) {
+		// æ¨¡æ‹Ÿç”¨æˆ·æ³¨å†Œ(è´¦å·é‡å¤)
 		User user = new User();
 
 		user.setAccount("abc");
 		user.setPassword("123");
-		user.setName("ÕÅÈı·á");
+		user.setName("å¼ ä¸‰ä¸°");
 		user.setImageUrl("1.gif");
 		UserService userService = new UserService();
 		boolean result = userService.register(user);
 		if (result && null == userService.getErrorMessage()) {
-			System.out.println("×¢²á³É¹¦");
+			System.out.println("æ³¨å†ŒæˆåŠŸ");
 		} else {
-			System.out.println("×¢²áÊ§°Ü[" + userService.getErrorMessage() + "]");
+			System.out.println("æ³¨å†Œå¤±è´¥[" + userService.getErrorMessage() + "]");
 		}
 	}
-	
-	
-	
-	public static void main(String[] args) {
-		// Ä£ÄâÓÃ»§µÇÂ¼
+
+
+
+	public static void main1(String[] args) {
+		// æ¨¡æ‹Ÿç”¨æˆ·ç™»å½•
 		String account = "abc";
 		String password = "123";
 
 		UserService userService = new UserService();
 		User user = userService.login(account, password);
 		if (user == null) {
-			System.out.println("ÓÃ»§µÇÂ¼Ê§°Ü");
+			System.out.println("ç”¨æˆ·ç™»å½•å¤±è´¥");
 		} else {
-			System.out.println("ÓÃ»§µÇÂ¼³É¹¦");
+			System.out.println("ç”¨æˆ·ç™»å½•æˆåŠŸ");
 		}
 
 	}

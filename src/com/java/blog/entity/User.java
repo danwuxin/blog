@@ -1,28 +1,28 @@
 /**
- *Ê±¼ä£º2014-4-18ÉÏÎç10:07:11
- *userÊµÌåÀà
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *æ—¶é—´ï¼š2014-4-18ä¸Šåˆ10:07:11
+ *userå®ä½“ç±»
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.entity;
 
 public class User {
-    
-	//Ê¹ÓÃÕßid   int ÀàĞÍ
+
+	//ä½¿ç”¨è€…id   int ç±»å‹
 	private int userid;
-	//ÕËºÅ
+	//è´¦å·
 	private String account;
-	//ÃÜÂë
+	//å¯†ç 
 	private String password;
-	//ÕæÊµĞÕÃû
+	//çœŸå®å§“å
 	private String name;
-	//ĞÔ±ğ
+	//æ€§åˆ«
 	private String gender;
-	//Í·Ïñ
+	//å¤´åƒ
 	private String imageUrl;
-	//ÄêÁä
+	//å¹´é¾„
 	private int age;
-	//»ı·Ö
+	//ç§¯åˆ†
 	private int integrals;
 
 	public int getUserid() {

@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç9:02:22
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ9:02:22
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -16,50 +16,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class AddArticleAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// ÉèÖÃ×Ö·û¼¯
+		// è®¾ç½®å­—ç¬¦é›†
 		request.setCharacterEncoding("utf-8");
-		// ½ÓÊÜÊı¾İ ÄÚÈİºÍ±êÌâ
+		// æ¥å—æ•°æ® å†…å®¹å’Œæ ‡é¢˜
 		String contents = request.getParameter("contents");
 		String ArticleTitle = request.getParameter("ArticleTitle");
-		// ÑéÖ¤±êÌâÊı¾İ
+		// éªŒè¯æ ‡é¢˜æ•°æ®
 		if (null == ArticleTitle || ArticleTitle.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÎÄÕÂ±êÌâ²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "æ–‡ç« æ ‡é¢˜ä¸èƒ½ä¸ºç©ºã€‚");
 //			request.getRequestDispatcher("addArticle.jsp").forward(request,
 //					response);
 //			return;
 			return new ActionForward("/addArticle.jsp", true);
 		}
-		// ÑéÖ¤ÄÚÈİÊı¾İ
+		// éªŒè¯å†…å®¹æ•°æ®
 
 		if (null == contents || contents.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÎÄÕÂÄÚÈİ²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "æ–‡ç« å†…å®¹ä¸èƒ½ä¸ºç©ºã€‚");
 //			request.getRequestDispatcher("addArticle.jsp").forward(request,
 //					response);
 //			return;
 			return new ActionForward("/addArticle.jsp", true);
 		}
-		// new Ò»¸öÎÄÕÂ¶ÔÏó ½«ÎÄÕÂĞÅÏ¢±£´æµ½article¶ÔÏóÖĞ
+		// new ä¸€ä¸ªæ–‡ç« å¯¹è±¡ å°†æ–‡ç« ä¿¡æ¯ä¿å­˜åˆ°articleå¯¹è±¡ä¸­
 		Article article = new Article();
 		article.setTitle(ArticleTitle);
 		article.setContents(contents.replace("\n", "<br/>"));
 		User user = (User) request.getSession().getAttribute("user");
 		article.setUser(user);
-		// µ÷ÓÃservice²ã
+		// è°ƒç”¨serviceå±‚
 		ArticleService articleService = new ArticleService();
 		boolean result = articleService.addArticle(article);
-		// ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¿Õ
+		// åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ä¸ºç©º
 		if (result) {
 //			response.sendRedirect("ListArticleServlet");
-         return new ActionForward("/ListArticle.do",false);
+			return new ActionForward("/ListArticle.do",false);
 		} else {
-			request.setAttribute("errorInfo", "·¢±íÎÄÕÂÊ§°Ü");
+			request.setAttribute("errorInfo", "å‘è¡¨æ–‡ç« å¤±è´¥");
 //			request.getRequestDispatcher("addArticle.jsp").forward(request,
 //					response);
 			return new ActionForward("/addArticle.jsp", true);

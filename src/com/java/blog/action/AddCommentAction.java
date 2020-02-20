@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç11:16:39
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ11:16:39
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -27,28 +27,28 @@ public class AddCommentAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		// 1¡¢ÉèÖÃ±àÂë
+		// 1ã€è®¾ç½®ç¼–ç 
 		request.setCharacterEncoding("utf-8");
 		// response.setHeader("content-type","text/html;charset=UTF-8");
-		// 2¡¢»ñÈ¡Êı¾İ
+		// 2ã€è·å–æ•°æ®
 		String articleId = request.getParameter("articleId");
 		String content = request.getParameter("content");
-		// 3¡¢ÑéÖ¤Êı¾İ
+		// 3ã€éªŒè¯æ•°æ®
 		if (null == content || content.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ÆÀÂÛµÄÄÚÈİ²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "è¯„è®ºçš„å†…å®¹ä¸èƒ½ä¸ºç©ºã€‚");
 			// request.getRequestDispatcher("detailArticle.jsp").forward(
 			// request, response);
-			// return; // Ò»¶¨ÒªÓĞ£¬·ñÔòºóÃæ¼ÌĞøÖ´ĞĞ£¬½«±¨´í
+			// return; // ä¸€å®šè¦æœ‰ï¼Œå¦åˆ™åé¢ç»§ç»­æ‰§è¡Œï¼Œå°†æŠ¥é”™
 			return new ActionForward("/detailArticle.jsp", true);
 		}
-		// 4¡¢µ÷ÓÃService²ãµÄ·½·¨´¦ÀíÒµÎñ
+		// 4ã€è°ƒç”¨Serviceå±‚çš„æ–¹æ³•å¤„ç†ä¸šåŠ¡
 		ArticleService articleService = new ArticleService();
 		CommentService commentService = new CommentService();
-		// newÒ»¸öÆÀÂÛ¶ÔÏó
+		// newä¸€ä¸ªè¯„è®ºå¯¹è±¡
 		Comment comment = new Comment();
 		comment.setContent(content.replace("\n", "<br/>"));
 		comment.setPostTime(new Date());
-		// ´ÓsessionÖĞÈ¡³öuser ÓÃÓÚÆÀÂÛÈË
+		// ä»sessionä¸­å–å‡ºuser ç”¨äºè¯„è®ºäºº
 		User user = (User) request.getSession().getAttribute("user");
 		comment.setUser(user);
 
@@ -57,14 +57,14 @@ public class AddCommentAction implements Action {
 		comment.setArticle(article);
 
 		boolean result = commentService.addComment(comment);
-		// 5¡¢ÅĞ¶Ï½á¹û²¢Ìø×ª
+		// 5ã€åˆ¤æ–­ç»“æœå¹¶è·³è½¬
 		if (result) {
 			// response.sendRedirect("DetailArticleServlet?articleId="
 			// + articleId);
 			return new ActionForward("/DetailArticle.do?articleId="
 					+ articleId, false);
 		} else {
-			request.setAttribute("errorInfo", "Ìí¼ÓÆÀÂÛÊ§°Ü¡£");
+			request.setAttribute("errorInfo", "æ·»åŠ è¯„è®ºå¤±è´¥ã€‚");
 			// request.getRequestDispatcher("detailArticle.jsp").forward(
 			// request, response);
 			return new ActionForward("/detailArticle.jsp", true);

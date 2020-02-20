@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-4-20ÏÂÎç3:07:11
+ *æ—¶é—´ï¼š2014-4-20ä¸‹åˆ3:07:11
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.service;
 
@@ -19,56 +19,57 @@ import java.util.Date;
 import java.util.List;
 
 
+
 public class ArticleService {
 	private ArticleDao articleDao = new ArticleDao();
 	private CommentDao commentDao = new CommentDao();
 	private UserDao userDao = new UserDao();
-    /**
-     * Ôö¼ÓÎÄÕÂÒµÎñ
-     * ÏÈÉèÖÃÎÄÕÂµÄµã»÷Êı0ºÍ·¢±íÊ±¼ä£¨×Ô¶¯»ñÈ¡£©
-     * */
+	/**
+	 * å¢åŠ æ–‡ç« ä¸šåŠ¡
+	 * å…ˆè®¾ç½®æ–‡ç« çš„ç‚¹å‡»æ•°0å’Œå‘è¡¨æ—¶é—´ï¼ˆè‡ªåŠ¨è·å–ï¼‰
+	 * */
 	public boolean addArticle(Article article) {
 		article.setClicks(0);
 		article.setPostTime(new Date());
 		int result = articleDao.insert(article);
-		//²åÈë³É¹¦  Ôö¼ÓĞÂµÄÒµÎñ
+		//æ’å…¥æˆåŠŸ  å¢åŠ æ–°çš„ä¸šåŠ¡
 		if (result > 0) {
-			// Ìí¼Ó¸½¼ÓµÄÒµÎñ£¬¸ø·¢±íÎÄÕÂµÄÓÃ»§Ôö¼Ó»ı·Ö
+			// æ·»åŠ é™„åŠ çš„ä¸šåŠ¡ï¼Œç»™å‘è¡¨æ–‡ç« çš„ç”¨æˆ·å¢åŠ ç§¯åˆ†
 			User originalUser = userDao.findUserById(article.getUser()
 					.getUserid());
-			//ÉèÖÃÓÃ»§·¢±íÎÄÕÂºó¼Ç·ÖµÄÔö¼Ó
+			//è®¾ç½®ç”¨æˆ·å‘è¡¨æ–‡ç« åè®°åˆ†çš„å¢åŠ 
 			originalUser.setIntegrals(originalUser.getIntegrals() + 5);
 			userDao.updateUser(originalUser);
 		}
 		return (result > 0);
 	}
-    /**
-     * ¸ù¾İ×÷Õß²éÑ¯³ö¸Ã×÷Õß·¢±íµÄËùÓĞÎÄÕÂÒµÎñ
-     * */
+	/**
+	 * æ ¹æ®ä½œè€…æŸ¥è¯¢å‡ºè¯¥ä½œè€…å‘è¡¨çš„æ‰€æœ‰æ–‡ç« ä¸šåŠ¡
+	 * */
 	public List<Article> findByUserId(int userid) {
 		return articleDao.findByUserId(userid);
 
 	}
 
 	public boolean deleteArticleById(int articleId) {
-		// 1¡¢ÒªÏÈÉ¾³ı¸ÃÎÄÕÂµÄÆÀÂÛ
+		// 1ã€è¦å…ˆåˆ é™¤è¯¥æ–‡ç« çš„è¯„è®º
 		int resultComment = commentDao.deleteByArticleId(articleId);
-		// 2¡¢È»ºóÔÙÉ¾³ı¸ÃÎÄÕÂ
+		// 2ã€ç„¶åå†åˆ é™¤è¯¥æ–‡ç« 
 		int resultArticle = articleDao.deleteById(articleId);
 		return (resultComment >= 0 && resultArticle > 0);
 	}
-      /**
-       * ¸ù¾İÎÄÕıid²éÑ¯ÎÄÕÂÒµÎñ
-       * */
+	/**
+	 * æ ¹æ®æ–‡æ­£idæŸ¥è¯¢æ–‡ç« ä¸šåŠ¡
+	 * */
 	public Article findArticleById(int articleId) {
 		return articleDao.findByArticleId(articleId);
 	}
-    /**
-     * ¸üĞÂÎÄÕÂÒµÎñ
-     * */
+	/**
+	 * æ›´æ–°æ–‡ç« ä¸šåŠ¡
+	 * */
 	public boolean updateArticle(Article article) {
-		// ¸üĞÂÊ±´«ÈëµÄÊı¾İ²»ÍêÈ«£¬Ö»ÓĞÄÚÈİºÍ±êÌâ¿ÉÒÔĞŞ¸Ä
-		// 1¡¢°´´«Èë¶ÔÏóµÄId²éÕÒÊı¾İ¿âÖĞÔ­¶ÔÏó
+		// æ›´æ–°æ—¶ä¼ å…¥çš„æ•°æ®ä¸å®Œå…¨ï¼Œåªæœ‰å†…å®¹å’Œæ ‡é¢˜å¯ä»¥ä¿®æ”¹
+		// 1ã€æŒ‰ä¼ å…¥å¯¹è±¡çš„IdæŸ¥æ‰¾æ•°æ®åº“ä¸­åŸå¯¹è±¡
 		Article originalArticle = articleDao.findByArticleId(article
 				.getArticleId());
 		originalArticle.setTitle(article.getTitle());
@@ -77,18 +78,18 @@ public class ArticleService {
 		return (result > 0);
 
 	}
-    //²éÑ¯ËùÓĞÎÄÕÂÒµÎñ
+	//æŸ¥è¯¢æ‰€æœ‰æ–‡ç« ä¸šåŠ¡
 	public List<ArticleVo> getAllArticleVo() {
 		return articleDao.findAll();
 	}
 
-	// »ñÈ¡Ä³¸öÓÃ»§ËùÓĞµÄÏÔÊ¾ÔÚ½çÃæÖĞµÄVOÁĞ±í
+	// è·å–æŸä¸ªç”¨æˆ·æ‰€æœ‰çš„æ˜¾ç¤ºåœ¨ç•Œé¢ä¸­çš„VOåˆ—è¡¨
 	public List<ArticleVo> getArticleVoByUserId(int userId) {
 		return articleDao.findArticleVoByUserId(userId);
 	}
 
 	public ArticleVo findArticleDetailById(int articleId) {
-		// ÎÄÕÂµÄµã»÷Êı¼Ó1
+		// æ–‡ç« çš„ç‚¹å‡»æ•°åŠ 1
 		Article originalArticle = articleDao.findByArticleId(articleId);
 		originalArticle.setClicks(originalArticle.getClicks() + 1);
 		articleDao.update(originalArticle);
@@ -97,23 +98,23 @@ public class ArticleService {
 	}
 
 	/**
-	 * ·ÖÒ³¹¦ÄÜ
-	 * 
+	 * åˆ†é¡µåŠŸèƒ½
+	 *
 	 * */
 	public PaginationData getArticleVoByPaging(int pageIndex) {
-		// 1¡¢»ñÈ¡×Ü¼ÇÂ¼Êı
+		// 1ã€è·å–æ€»è®°å½•æ•°
 		int recordCount = articleDao.getArticleCount();
-		// 2¡¢»ñÈ¡·ÖÒ³ÒªÏÔÊ¾µÄÊı¾İ
+		// 2ã€è·å–åˆ†é¡µè¦æ˜¾ç¤ºçš„æ•°æ®
 		List<ArticleVo> list = articleDao.getArticleByPaging(pageIndex);
-		// 3¡¢¼ÆËã×ÜÒ³ÃæÊı
+		// 3ã€è®¡ç®—æ€»é¡µé¢æ•°
 		int pageCount = recordCount / IConstant.PAGE_SIZE;
-		// ==0ÊÇ²»¹»Ò»Ò³ ²»ÄÜÕû³ıÊÇ²»ÂúPAGE_SIZEÊ±ÓÃÒ»Ò³
+		// ==0æ˜¯ä¸å¤Ÿä¸€é¡µ ä¸èƒ½æ•´é™¤æ˜¯ä¸æ»¡PAGE_SIZEæ—¶ç”¨ä¸€é¡µ
 		if (pageCount == 0 || recordCount % IConstant.PAGE_SIZE != 0) {
 			pageCount++;
 		}
-		// 4¡¢¹¹ÔìPagination¶ÔÏó²¢·µ»Ø
+		// 4ã€æ„é€ Paginationå¯¹è±¡å¹¶è¿”å›
 		PaginationData paginationData = new PaginationData();
-		// Ìî³äÊı¾İ
+		// å¡«å……æ•°æ®
 		paginationData.setData(list);
 		paginationData.setPageCount(pageCount);
 		paginationData.setPageIndex(pageIndex);
@@ -123,18 +124,18 @@ public class ArticleService {
 		return paginationData;
 	}
 	public PaginationData getUserArticleVoByPaging(int pageIndex, int userId) {
-		// 1¡¢»ñÈ¡×Ü¼ÇÂ¼Êı
+		// 1ã€è·å–æ€»è®°å½•æ•°
 		int recordCount = articleDao.getArticleCount(userId);
-		// 2¡¢»ñÈ¡·ÖÒ³ÒªÏÔÊ¾µÄÊı¾İ
+		// 2ã€è·å–åˆ†é¡µè¦æ˜¾ç¤ºçš„æ•°æ®
 		List<ArticleVo> list = articleDao.getArticleByPaging(pageIndex, userId);
-		// 3¡¢¼ÆËã×ÜÒ³ÃæÊı
+		// 3ã€è®¡ç®—æ€»é¡µé¢æ•°
 		int pageCount = recordCount / IConstant.PAGE_SIZE;
 		if (pageCount == 0 || recordCount % IConstant.PAGE_SIZE != 0) {
 			pageCount++;
 		}
-		// 4¡¢¹¹ÔìPagination¶ÔÏó²¢·µ»Ø
+		// 4ã€æ„é€ Paginationå¯¹è±¡å¹¶è¿”å›
 		PaginationData paginationData = new PaginationData();
-		// Ìî³äÊı¾İ
+		// å¡«å……æ•°æ®
 		paginationData.setData(list);
 		paginationData.setPageCount(pageCount);
 		paginationData.setPageIndex(pageIndex);

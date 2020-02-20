@@ -1,21 +1,15 @@
-/**
-*Ê±¼ä£º2014-4-26ÏÂÎç11:47:50
-*
-*×÷Õß£ºÕÅ¹ú±¦
-*¹¦ÄÜ£ºArticle VoÊµÌåÀà
-*/
 package com.java.blog.vo;
 
 
 import com.java.blog.entity.Article;
 
 public class ArticleVo {
-    //ÎÄÕÂ¶ÔÏó 
+	//æ–‡ç« å¯¹è±¡
 	private Article article;
-	//ÎÄÕÂÆÀÂÛÊı
+	//æ–‡ç« è¯„è®ºæ•°
 	private int commentCount;
-	
-	
+
+
 	public Article getArticle() {
 		return article;
 	}

@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç6:01:01
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ6:01:01
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -14,28 +14,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class LogoutAction implements Action {
 
-	
+
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
-		// Çå³ıCookieÖĞµÄÊı¾İ
-				Cookie[] cookies = request.getCookies();
-				if (cookies != null) {
-					for (int i = 0; i < cookies.length; i++) {
-						Cookie cookie = cookies[i];
-						if (cookie.getName().equals("userid")) {
-							cookie.setValue("");
-							cookie.setMaxAge(0);
-							response.addCookie(cookie);
-						}
-					}
-
+		// æ¸…é™¤Cookieä¸­çš„æ•°æ®
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie cookie = cookies[i];
+				if (cookie.getName().equals("userid")) {
+					cookie.setValue("");
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
 				}
-				request.getSession().removeAttribute("user");
-				request.getSession().invalidate();
-				return new ActionForward("/index.jsp",false);
 			}
+
+		}
+		request.getSession().removeAttribute("user");
+		request.getSession().invalidate();
+		return new ActionForward("/index.jsp",false);
+	}
 }

@@ -1,23 +1,25 @@
 /**
- *Ê±¼ä£º2014-4-20ÏÂÎç9:20:48
- *ÆÀÂÛÊµÌåÀà
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *æ—¶é—´ï¼š2014-4-20ä¸‹åˆ9:20:48
+ *è¯„è®ºå®ä½“ç±»
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.entity;
+
+
 
 import java.util.Date;
 
 public class Comment {
-    //ÆÀÂÛid  intÀàĞÍ
+	//è¯„è®ºid  intç±»å‹
 	private int commentId;
-	//ÆÀÂÛÄÚÈİ  
+	//è¯„è®ºå†…å®¹
 	private String content;
-    //ÆÀÂÛÊ±¼ä
+	//è¯„è®ºæ—¶é—´
 	private Date postTime;
-	//±»ÆÀÂÛµÄÎÄÕÂ
+	//è¢«è¯„è®ºçš„æ–‡ç« 
 	private Article article;
-	// ÆÀÂÛÈË
+	// è¯„è®ºäºº
 	private User user;
 
 	public int getCommentId() {

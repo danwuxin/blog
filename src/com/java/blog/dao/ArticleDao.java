@@ -1,28 +1,28 @@
 /**
- *Ê±¼ä£º2014-4-20ÏÂÎç3:06:49
+ *æ—¶é—´ï¼š2014-4-20ä¸‹åˆ3:06:49
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.dao;
-
-import com.java.blog.db.DBhelper;
-import com.java.blog.entity.Article;
-import com.java.blog.entity.User;
-import com.java.blog.util.IConstant;
-import com.java.blog.vo.ArticleVo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.java.blog.dao.UserDao;
+import com.java.blog.db.DBhelper;
+import com.java.blog.entity.Article;
+import com.java.blog.entity.User;
+import com.java.blog.util.IConstant;
+import com.java.blog.vo.ArticleVo;
 
 
 public class ArticleDao {
 	/**
-	 * ÓÃ»§·¢±íÒ»ÆªÎÄÕÂ ·µ»ØµÄÊÇÓ°ÏìµÄĞĞÊı
-	 * sqlÓï¾äÊÇÔÚarticles±íÖĞ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * ç”¨æˆ·å‘è¡¨ä¸€ç¯‡æ–‡ç«  è¿”å›çš„æ˜¯å½±å“çš„è¡Œæ•°
+	 * sqlè¯­å¥æ˜¯åœ¨articlesè¡¨ä¸­æ’å…¥ä¸€æ¡è®°å½•
 	 * */
 	public int insert(Article article) {
 		String sql = "insert into articles ( postTime,title,contents,clicks,userid) values(?,?,?,?,?)";
@@ -32,16 +32,16 @@ public class ArticleDao {
 	}
 
 	/**
-	 * 
-	 * ¸ù¾İ×÷Õß ²é³ö¸Ã×÷ÕßidµÄËùÓĞÎÄÕÂ
-	 * 
+	 *
+	 * æ ¹æ®ä½œè€… æŸ¥å‡ºè¯¥ä½œè€…idçš„æ‰€æœ‰æ–‡ç« 
+	 *
 	 * */
 	public List<Article> findByUserId(int userid) {
 		String sql = "select * from articles where userid = ?";
 		DBhelper helper = new DBhelper();
 		List<Article> list = new ArrayList<Article>();
 		ResultSet rs = helper.executeQuery(sql, userid);
-		try { // while Ñ­»·²Å¿ÉÒÔ²é³öÈ«²¿µÄÎÄÕÂ ²»ÄÜÔÚ¼¯ºÏÖĞÓÃif Ö»ÄÜ·µ»ØÒ»Ìõ
+		try { // while å¾ªç¯æ‰å¯ä»¥æŸ¥å‡ºå…¨éƒ¨çš„æ–‡ç«  ä¸èƒ½åœ¨é›†åˆä¸­ç”¨if åªèƒ½è¿”å›ä¸€æ¡
 			while (rs.next()) {
 
 				Article article = rs2Article(rs);
@@ -55,9 +55,9 @@ public class ArticleDao {
 	}
 
 	/**
-	 * 
-	 * ¸ù¾İÎÄÕÂidÉ¾³ıÒ»ÆªÎÄÕÂdeleteById
-	 * 
+	 *
+	 * æ ¹æ®æ–‡ç« idåˆ é™¤ä¸€ç¯‡æ–‡ç« deleteById
+	 *
 	 * */
 	public int deleteById(int articleId) {
 		String sql = "delete from articles where articleId=?";
@@ -65,8 +65,8 @@ public class ArticleDao {
 	}
 
 	/**
-	 * ¸ù¾İÎÄÕÂid ²é³öÕûÆ¬ÎÄÕÂÄÚÈİ
-	 * Òª¸üĞÂÊ±ĞèÒªµÄ·½·¨ ¸ù¾İÒªĞŞ¸ÄµÄÎÄÕÂµÄid¾ÍÔ­ÏÈµÄÎÄÕÂ²éÑ¯³öÀ´
+	 * æ ¹æ®æ–‡ç« id æŸ¥å‡ºæ•´ç‰‡æ–‡ç« å†…å®¹
+	 * è¦æ›´æ–°æ—¶éœ€è¦çš„æ–¹æ³• æ ¹æ®è¦ä¿®æ”¹çš„æ–‡ç« çš„idå°±åŸå…ˆçš„æ–‡ç« æŸ¥è¯¢å‡ºæ¥
 	 * */
 	public Article findByArticleId(int articleId) {
 		Article article = null;
@@ -85,8 +85,8 @@ public class ArticleDao {
 	}
 
 	/**
-	 * ¸üĞÂÎÄÕÂ
-	 * 
+	 * æ›´æ–°æ–‡ç« 
+	 *
 	 * */
 	public int update(Article article) {
 		String sql = "update articles set PostTime=?,title=?,contents=?,clicks=?,userid=? where articleId=?";
@@ -96,10 +96,10 @@ public class ArticleDao {
 	}
 
 	/**
-	 * 
-	 * ²éÑ¯ËùÓĞÈËµÄËùÓĞÎÄÕÂ
-	 * 
-	 * 
+	 *
+	 * æŸ¥è¯¢æ‰€æœ‰äººçš„æ‰€æœ‰æ–‡ç« 
+	 *
+	 *
 	 * */
 	public List<ArticleVo> findAll() {
 		List<ArticleVo> list = new ArrayList<ArticleVo>();
@@ -109,15 +109,15 @@ public class ArticleDao {
 
 		try {
 			while (rs.next()) {
-				// ¹¹ÔìArticle¶ÔÏó
+				// æ„é€ Articleå¯¹è±¡
 				Article article = rs2Article(rs);
 				int commentCount = rs.getInt("commentCount");
 
-				// ¹¹ÔìArticleVo¶ÔÏó
+				// æ„é€ ArticleVoå¯¹è±¡
 				ArticleVo articleVo = new ArticleVo();
 				articleVo.setArticle(article);
 				articleVo.setCommentCount(commentCount);
-				// Ìí¼Óvoµ½¼¯ºÏÖĞ
+				// æ·»åŠ voåˆ°é›†åˆä¸­
 				list.add(articleVo);
 			}
 		} catch (SQLException e) {
@@ -136,15 +136,15 @@ public class ArticleDao {
 
 		try {
 			while (rs.next()) {
-				// ¹¹ÔìArticle¶ÔÏó
+				// æ„é€ Articleå¯¹è±¡
 				Article article = rs2Article(rs);
 				int commentCount = rs.getInt("commentCount");
 
-				// ¹¹ÔìArticleVo¶ÔÏó
+				// æ„é€ ArticleVoå¯¹è±¡
 				ArticleVo articleVo = new ArticleVo();
 				articleVo.setArticle(article);
 				articleVo.setCommentCount(commentCount);
-				// Ìí¼Óvoµ½¼¯ºÏÖĞ
+				// æ·»åŠ voåˆ°é›†åˆä¸­
 				list.add(articleVo);
 			}
 		} catch (SQLException e) {
@@ -164,12 +164,12 @@ public class ArticleDao {
 		ArticleVo articleVo = null;
 		try {
 			if (rs.next()) {
-				// ¹¹ÔìArticle¶ÔÏó
+				// æ„é€ Articleå¯¹è±¡
 				Article article = rs2Article(rs);
 				int commentCount = rs.getInt("commentCount");
 
-				// ¹¹ÔìArticleVo¶ÔÏó
-			    articleVo = new ArticleVo();
+				// æ„é€ ArticleVoå¯¹è±¡
+				articleVo = new ArticleVo();
 				articleVo.setArticle(article);
 				articleVo.setCommentCount(commentCount);
 			}
@@ -181,7 +181,7 @@ public class ArticleDao {
 		return articleVo;
 	}
 	/**
-	 * ³éÈ¡·½·¨ rs2Article
+	 * æŠ½å–æ–¹æ³• rs2Article
 	 * */
 	private Article rs2Article(ResultSet rs) throws SQLException {
 		Article article = new Article();
@@ -195,7 +195,7 @@ public class ArticleDao {
 		article.setUser(user);
 		return article;
 	}
-/*--------------------------------------·ÖÒ³²¿·Ö-------------------------------------------------------*/
+	/*--------------------------------------åˆ†é¡µéƒ¨åˆ†-------------------------------------------------------*/
 	public int getArticleCount() {
 		int result = 0;
 		String sql="select count(*) from articles";
@@ -221,15 +221,15 @@ public class ArticleDao {
 
 		try {
 			while (rs.next()) {
-				// ¹¹ÔìArticle¶ÔÏó
+				// æ„é€ Articleå¯¹è±¡
 				Article article = rs2Article(rs);
 				int commentCount = rs.getInt("commentCount");
 
-				// ¹¹ÔìArticleVo¶ÔÏó
+				// æ„é€ ArticleVoå¯¹è±¡
 				ArticleVo articleVo = new ArticleVo();
 				articleVo.setArticle(article);
 				articleVo.setCommentCount(commentCount);
-				// Ìí¼Óvoµ½¼¯ºÏÖĞ
+				// æ·»åŠ voåˆ°é›†åˆä¸­
 				list.add(articleVo);
 			}
 		} catch (SQLException e) {
@@ -239,10 +239,10 @@ public class ArticleDao {
 		helper.close();
 		return list;
 	}
-	
+
 	/**
-	 * Ä³¸öÓÃ»§µÄ¼ÇÂ¼ÌõÊı²éÑ¯
-	 * ¸ù¾İuserid²éÑ¯³öÓÃ»§ÎÄÕÂÊı
+	 * æŸä¸ªç”¨æˆ·çš„è®°å½•æ¡æ•°æŸ¥è¯¢
+	 * æ ¹æ®useridæŸ¥è¯¢å‡ºç”¨æˆ·æ–‡ç« æ•°
 	 **/
 	public int getArticleCount(int userId) {
 		int result = 0;
@@ -259,7 +259,7 @@ public class ArticleDao {
 		helper.close();
 		return result;
 	}
-	
+
 	public List<ArticleVo> getArticleByPaging(int pageIndex,int userId) {
 		List<ArticleVo> list = new ArrayList<ArticleVo>();
 		String sql = "SELECT *,(SELECT COUNT(*) FROM comments WHERE comments.articleId=articles.articleId) AS commentCount FROM articles where UserId=? limit ?,?";
@@ -269,15 +269,15 @@ public class ArticleDao {
 
 		try {
 			while (rs.next()) {
-				// ¹¹ÔìArticle¶ÔÏó
+				// æ„é€ Articleå¯¹è±¡
 				Article article = rs2Article(rs);
 				int commentCount = rs.getInt("commentCount");
 
-				// ¹¹ÔìArticleVo¶ÔÏó
+				// æ„é€ ArticleVoå¯¹è±¡
 				ArticleVo articleVo = new ArticleVo();
 				articleVo.setArticle(article);
 				articleVo.setCommentCount(commentCount);
-				// Ìí¼Óvoµ½¼¯ºÏÖĞ
+				// æ·»åŠ voåˆ°é›†åˆä¸­
 				list.add(articleVo);
 			}
 		} catch (SQLException e) {
@@ -287,6 +287,6 @@ public class ArticleDao {
 		helper.close();
 		return list;
 	}
-	
+
 
 }

@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-4-30ÉÏÎç12:30:36
+ *æ—¶é—´ï¼š2014-4-30ä¸Šåˆ12:30:36
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£º±£´æ·ÖÒ³µÄÊı¾İ
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šä¿å­˜åˆ†é¡µçš„æ•°æ®
  */
 package com.java.blog.util;
 
@@ -11,17 +11,16 @@ import com.java.blog.vo.ArticleVo;
 import java.util.List;
 
 
-
 public class PaginationData {
-	// ·ÖÒ³ÏÔÊ¾µÄÊı¾İ£¬ÌõÊı²»³¬¹ıÒ³Ãæ´óĞ¡
+	// åˆ†é¡µæ˜¾ç¤ºçš„æ•°æ®ï¼Œæ¡æ•°ä¸è¶…è¿‡é¡µé¢å¤§å°
 	private List<ArticleVo> data;
-	// ×Ü¼ÇÂ¼Êı
+	// æ€»è®°å½•æ•°
 	private int recordCount;
-	// Ò³Ãæ´óĞ¡
+	// é¡µé¢å¤§å°
 	private int pageSize;
-	// µ±Ç°Ò³ÃæºÅ£¨´Ó1¿ªÊ¼£©
+	// å½“å‰é¡µé¢å·ï¼ˆä»1å¼€å§‹ï¼‰
 	private int pageIndex;
-	// ×ÜÒ³Êı
+	// æ€»é¡µæ•°
 	private int pageCount;
 	public List<ArticleVo> getData() {
 		return data;
@@ -53,6 +52,6 @@ public class PaginationData {
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
-	
-	
+
+
 }

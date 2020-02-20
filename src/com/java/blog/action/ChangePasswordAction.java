@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç10:48:30
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ10:48:30
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
 
@@ -15,49 +15,48 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 public class ChangePasswordAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 								 HttpServletResponse response) throws Exception {
-		// ÉèÖÃ×Ö·û¼¯
+		// è®¾ç½®å­—ç¬¦é›†
 		// response.setHeader("content-type","text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// ½ÓÊÜÊı¾İ Ô­ÃÜÂë ĞÂÃÜÂë È·ÈÏĞÂÃÜÂë
+		// æ¥å—æ•°æ® åŸå¯†ç  æ–°å¯†ç  ç¡®è®¤æ–°å¯†ç 
 		String oldPassword = request.getParameter("oldPassword");
 		String newPassword = request.getParameter("newPassword");
 		String confirmPassword = request.getParameter("confirmPassword");
-		// ÑéÖ¤±êÌâÊı¾İ
+		// éªŒè¯æ ‡é¢˜æ•°æ®
 		if (null == oldPassword || oldPassword.trim().length() == 0) {
-			request.setAttribute("errorInfo", "Ô­ÃÜÂë²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "åŸå¯†ç ä¸èƒ½ä¸ºç©ºã€‚");
 			// request.getRequestDispatcher("changePassword.jsp").forward(
 			// request, response);
 			// return;
 			return new ActionForward("/changePassword.jsp", true);
 		}
-		// ÑéÖ¤ÄÚÈİÊı¾İ
+		// éªŒè¯å†…å®¹æ•°æ®
 
 		if (null == newPassword || newPassword.trim().length() == 0) {
-			request.setAttribute("errorInfo", "ĞÂÃÜÂë²»ÄÜÎª¿Õ¡£");
+			request.setAttribute("errorInfo", "æ–°å¯†ç ä¸èƒ½ä¸ºç©ºã€‚");
 			// request.getRequestDispatcher("changePassword.jsp").forward(
 			// request, response);
 			// return;
 			return new ActionForward("/changePassword.jsp", true);
 		}
 		if (!newPassword.equals(confirmPassword)) {
-			request.setAttribute("errorInfo", "ĞÂÃÜÂëÓëÈ·ÈÏÃÜÂëÊäÈë²»Ò»ÖÂ¡£");
+			request.setAttribute("errorInfo", "æ–°å¯†ç ä¸ç¡®è®¤å¯†ç è¾“å…¥ä¸ä¸€è‡´ã€‚");
 			// request.getRequestDispatcher("changePassword.jsp").forward(
 			// request, response);
 			// return;
 			return new ActionForward("/changePassword.jsp", true);
 		}
 
-		// µ÷ÓÃservice²ã
+		// è°ƒç”¨serviceå±‚
 		UserService userService = new UserService();
-		// µÇÂ¼ºósession±£´æĞÅÏ¢ ´ÓsessionÖĞÈ¡³öÕıÔÚÓÃ»§µÄuser¶ÔÏó
+		// ç™»å½•åsessionä¿å­˜ä¿¡æ¯ ä»sessionä¸­å–å‡ºæ­£åœ¨ç”¨æˆ·çš„userå¯¹è±¡
 		User user = (User) request.getSession().getAttribute("user");
-		// ´«ÈëuserµÄÕËºÅ ¾ÉÃÜÂë ĞÂÃÜÂë
+		// ä¼ å…¥userçš„è´¦å· æ—§å¯†ç  æ–°å¯†ç 
 		boolean result = userService.changePassword(user.getAccount(),
 				oldPassword, newPassword);
 		if (result) {

@@ -1,8 +1,8 @@
 /**
- *Ê±¼ä£º2014-4-18ÉÏÎç10:31:42
+ *æ—¶é—´ï¼š2014-4-18ä¸Šåˆ10:31:42
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.service;
 
@@ -15,9 +15,9 @@ import java.util.List;
 
 
 public class UserService {
-    /**
-     * errorMessage   Ïò½çÃæ·µ»Ø´íÎóĞÅÏ¢
-     * */
+	/**
+	 * errorMessage   å‘ç•Œé¢è¿”å›é”™è¯¯ä¿¡æ¯
+	 * */
 	private String errorMessage = null;
 
 	public String getErrorMessage() {
@@ -25,63 +25,63 @@ public class UserService {
 	}
 
 	private UserDao userDao = new UserDao();
-   /**
-    * ÓÃ»§×¢²áÒµÎñ
-    * ´«ÈëÒ»¸öuser¶ÔÏó
-    * ×¢²áÇ°ÏÈ²éÒ»ÏÂÕËºÅÊÇ·ñÖØ¸´
-    * Ã»ÓĞÖØ¸´½øĞĞ×¢²á
-    * */
+	/**
+	 * ç”¨æˆ·æ³¨å†Œä¸šåŠ¡
+	 * ä¼ å…¥ä¸€ä¸ªuserå¯¹è±¡
+	 * æ³¨å†Œå‰å…ˆæŸ¥ä¸€ä¸‹è´¦å·æ˜¯å¦é‡å¤
+	 * æ²¡æœ‰é‡å¤è¿›è¡Œæ³¨å†Œ
+	 * */
 	public boolean register(User user) {
 		int result = 0;
 		User userTmp = userDao.findUser(user.getAccount());
 		if (userTmp != null) {
-			this.errorMessage = "ÓÃ»§ÕËºÅÖØ¸´";
+			this.errorMessage = "ç”¨æˆ·è´¦å·é‡å¤";
 			return false;
 		}
-		// ÓÃ»§×¢²á
+		// ç”¨æˆ·æ³¨å†Œ
 		result = userDao.add(user);
 		return (result > 0);
 
 	}
-    /**
-     * ÓÃ»§µÇÂ¼¹¦ÄÜÒµÎñ
-     * ²ÎÊı  account password
-     * */
+	/**
+	 * ç”¨æˆ·ç™»å½•åŠŸèƒ½ä¸šåŠ¡
+	 * å‚æ•°  account password
+	 * */
 	public User login(String account, String password) {
 		return userDao.findUser(account, password);
 
 	}
-    /**
-     * ĞŞ¸ÄÃÜÂëÒµÎñ
-     * ĞŞ¸ÄÇ°ÅĞ¶ÏÊÇ²»ÊÇÕæÕıµÄÓÃ»§ÔÚ²Ù×÷
-     * */
+	/**
+	 * ä¿®æ”¹å¯†ç ä¸šåŠ¡
+	 * ä¿®æ”¹å‰åˆ¤æ–­æ˜¯ä¸æ˜¯çœŸæ­£çš„ç”¨æˆ·åœ¨æ“ä½œ
+	 * */
 	public boolean changePassword(String account, String oldPassword,
-			String newPassword) {
+								  String newPassword) {
 
-		// ÏÈÓÃÔ­ÃÜÂëÅĞ¶ÏÊÇ²»ÊÇÕæÕıµÄÓÃ»§
-		//ÖØĞÂµÇÂ¼Ò»´Î   Èç¹û³É¹¦ÊÇÕæÕıµÄÓÃ»§²Ù×÷
+		// å…ˆç”¨åŸå¯†ç åˆ¤æ–­æ˜¯ä¸æ˜¯çœŸæ­£çš„ç”¨æˆ·
+		//é‡æ–°ç™»å½•ä¸€æ¬¡   å¦‚æœæˆåŠŸæ˜¯çœŸæ­£çš„ç”¨æˆ·æ“ä½œ
 		User user = userDao.findUser(account, oldPassword);
-		// ÅĞ¶ÏuserÊÇ·ñÎª¿Õ
+		// åˆ¤æ–­useræ˜¯å¦ä¸ºç©º
 		if (user == null) {
-			errorMessage = "Ô­ÃÜÂë´íÎó";
+			errorMessage = "åŸå¯†ç é”™è¯¯";
 			return false;
 		}
-		//¼ì²é³É¹¦  ÉèÖÃĞÂµÄÃÜÂë  
+		//æ£€æŸ¥æˆåŠŸ  è®¾ç½®æ–°çš„å¯†ç 
 		user.setPassword(newPassword);
-		//¸üĞÂÓÃ»§ĞÅÏ¢
+		//æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 		int result = userDao.updateUser(user);
 		if (result > 0) {
 			return true;
 		} else {
-			errorMessage = "ÉèÖÃÃÜÂëÊ§°Ü";
+			errorMessage = "è®¾ç½®å¯†ç å¤±è´¥";
 			return false;
 		}
 
 	}
-    /**
-     * ¸üĞÂÓÃ»§ĞÅÏ¢ÒµÎñ
-     * ÏÈ¸ù¾İÓÃ»§id²é³öÓÃ»§ ÔÙÉèÖÃÓÃ»§ĞÅÏ¢
-     * */
+	/**
+	 * æ›´æ–°ç”¨æˆ·ä¿¡æ¯ä¸šåŠ¡
+	 * å…ˆæ ¹æ®ç”¨æˆ·idæŸ¥å‡ºç”¨æˆ· å†è®¾ç½®ç”¨æˆ·ä¿¡æ¯
+	 * */
 	public User updateUser(User user) {
 		User originalUser = userDao.findUserById(user.getUserid());
 		originalUser.setName(user.getName());
@@ -93,21 +93,21 @@ public class UserService {
 		if (result > 0) {
 			return originalUser;
 		} else {
-			errorMessage = "¸üĞÂ¸öÈËĞÅÏ¢Ê§°Ü¡£";
+			errorMessage = "æ›´æ–°ä¸ªäººä¿¡æ¯å¤±è´¥ã€‚";
 			return null;
 		}
 	}
 
-	/** 
-	 *È¡³ö»îÔ¾»î5¸öÓÃ»§ÒµÎñ
-	 * 
+	/**
+	 *å–å‡ºæ´»è·ƒæ´»5ä¸ªç”¨æˆ·ä¸šåŠ¡
+	 *
 	 **/
 	public List<UserVo> findTop5() {
 		return userDao.findTop5User();
 	}
 
 	/**
-	 * ÅĞ¶Ï¼Ç×¡ÎÒ£¬¸ù¾İuserid ¸ù¾İuseridÖØĞÂ´ÓÊı¾İ¿âÖĞÈ¡ÓÃ»§ĞÅÏ¢
+	 * åˆ¤æ–­è®°ä½æˆ‘ï¼Œæ ¹æ®userid æ ¹æ®useridé‡æ–°ä»æ•°æ®åº“ä¸­å–ç”¨æˆ·ä¿¡æ¯
 	 * */
 	public User findByUserId(int userId) {
 		return userDao.findUserById(userId);

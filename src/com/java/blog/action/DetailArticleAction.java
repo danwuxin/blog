@@ -1,10 +1,15 @@
 /**
- *Ê±¼ä£º2014-7-15ÏÂÎç11:27:43
+ *æ—¶é—´ï¼š2014-7-15ä¸‹åˆ11:27:43
  *
- *×÷Õß£ºÕÅ¹ú±¦
- *¹¦ÄÜ£ºTODO
+ *ä½œè€…ï¼šå¼ å›½å®
+ *åŠŸèƒ½ï¼šTODO
  */
 package com.java.blog.action;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.java.blog.entity.Comment;
 import com.java.blog.service.ArticleService;
@@ -12,12 +17,6 @@ import com.java.blog.service.CommentService;
 import com.java.blog.vo.ArticleVo;
 import com.java.mvc.Action;
 import com.java.mvc.ActionForward;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 
 
 public class DetailArticleAction implements Action {
